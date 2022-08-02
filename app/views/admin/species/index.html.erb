@@ -1,0 +1,51 @@
+<h1>Les Statistiques des Utilisateur </h1>
+
+<p class="text-right">
+
+<%= line_chart User.group_by_day(:created_at, range: 1.week.ago..Time.now).sum(:updated_at) %>
+<h2>Les Personnes qui ont un comptes</h2>
+<%= pie_chart User.group(:username).count %>
+<h2>Les jours de Creation des comptes</h2>
+<%= bar_chart User.group_by_day(:created_at).count(:updated_at) %>
+<h2>Les admins et les Utilisateurs</h2>
+<%= line_chart User.group(:role).group(:username).count %>
+
+    <%= link_to 'Ajouter une espéce', {action: :new}, class: 'btn btn-success' %>
+</p>
+<table class="table table-striped"> 
+
+
+<thead>
+    <th>Nom</th> 
+    <th>Slug</th> 
+    <th>Actions</th> 
+    </tr>
+</thead>
+
+<tbody>
+    <% @species.each do |species| %>
+
+    <tr>
+        <td><%= species.name%></td>
+        <td><%= species.slug%></td>
+    <td>
+    <%= link_to 'Editer', [:edit, :admin, species], class: 'btn btn-primary'%>
+    <%= link_to 'Supprimer', [:admin, species], class: 'btn btn-danger',data: {method: :delete, Confirm:'Voulez vous Supprimer?'}%>
+    </td>
+    
+    
+    </tr>
+
+
+    
+    <% end %>
+
+
+
+
+
+</tbody>
+
+
+
+</table>
