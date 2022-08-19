@@ -24,6 +24,11 @@ gem 'jbuilder', '~> 2.7'
 
  gem 'mini_magick', '~> 4.8'
  gem 'carrierwave', '~> 2.0'
+ gem 'ransack'
+gem "sentry-ruby"
+gem "sentry-rails"
+
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -58,3 +63,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "chartkick", "~> 4.2"
 
 gem "groupdate", "~> 6.1"
+
+
+gem "sentry-raven", "~> 3.1"

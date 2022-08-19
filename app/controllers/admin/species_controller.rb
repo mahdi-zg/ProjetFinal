@@ -5,15 +5,15 @@ module Admin
         before_action :set_species, only: [:update, :edit, :destroy]
 
         def index
-                @species = Species.all
+            @species = Specie.all
         end
 
         def new 
-            @species = Species.new
+            @species = Specie.new
         end
 
         def create
-            @species = Species.new(species_params)
+            @species = Specie.new(species_params)
             if @species.save
 
                 redirect_to({action: :index}, success: "L'especés a bien ete crée ")
@@ -22,6 +22,14 @@ module Admin
             end
         end
 
+        def destroy
+            
+            @specie.destroy
+            redirect_to({action: :index}, success: "L'especés a bien ete Supprimée ")
+
+        end
+
+        
         def edit
         end
 
@@ -36,24 +44,18 @@ module Admin
 
         end
 
-        def destroy
-            @species.destroy
-            redirect_to({action: :index}, success: "L'especés a bien ete Supprimée ")
-
-
-        end
 
 
 
         private
 
         def species_params
-            params.require(:species).permit(:slug, :name)
+            params.require(:specie).permit(:slug, :name, :questionone, :questiontwo, :questionthree)
 
         end
 
         def set_species
-            @species = Species.find(params[:id])
+            @species = Specie.find(params[:id])
         end
 
 

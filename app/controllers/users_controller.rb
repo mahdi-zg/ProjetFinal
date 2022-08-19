@@ -2,12 +2,15 @@ class UsersController < ApplicationController
 
     skip_before_action :only_signed_in, only: [:new, :create, :confirm]
     before_action :only_signed_out, only: [:new, :create, :confirm]
+    skip_before_action :verify_authenticity_token  
+
     def new 
         @user =User.new
     end
 
     def create
-        user_params = params.require(:user).permit(:username, :email, :password, :password_confirmation)
+        user_params = params.require(:user).permit(:username, :email, :password, :password_confirmation).reverse_merge(role: 'User')
+       
         @user = User.new(user_params)
 
         @user.recover_password = nil
@@ -45,6 +48,7 @@ class UsersController < ApplicationController
 
     def edit
         @user = current_user
+        @species = Specie.all
     end
 
     def update
@@ -62,6 +66,26 @@ class UsersController < ApplicationController
         end
     end
 
+    def answers
+        @specie = Specie.find(params[:id])
+        
+    end
 
+    def respond_answer
+        @specie = Specie.find(params[:specie_id])
 
+        unless Answer.exists?(specie_id: params[:specie_id], user_id: current_user.id)
+            answer = Answer.new(specie_id: params[:specie_id], user_id: current_user.id, label: params[:answer])
+        
+            if answer.save
+                redirect_to profil_path
+            else
+                render :answer
+            end
+        else
+            redirect_to profil_path
+        end
+
+        
+    end
 end

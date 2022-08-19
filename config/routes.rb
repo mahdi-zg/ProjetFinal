@@ -4,6 +4,8 @@ Rails.application.routes.draw do
    root to: 'users#new' 
   
   get '/profil', to: 'users#edit', as: :profil
+  get '/profil/answers/:id', to: 'users#answers', as: :answers
+  post '/profil/answers', to: 'users#respond_answer'
   patch '/profil', to: 'users#update'
 
 
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
 
     get '/login', to: 'sessions#new', as: :new_session
    post '/login', to: 'sessions#create'
-    delete 'logout', to: 'sessions#destroy', as: :destroy_session
+    get 'logout', to: 'sessions#destroy', as: :destroy_session
   resources :sessions, only: [:new, :create]
   resources :passwords, only: [:new, :create, :edit, :update]  
   resources :users, only: [:new, :create, :edit] do 
@@ -23,7 +25,11 @@ Rails.application.routes.draw do
 
 
   scope 'superadmin', module: 'admin', as: 'admin' do
-  resources :species, except: [:show]
+    resources :species, except: [:show]
+
+  end
+scope 'superadmin', module: 'admin', as: 'admin' do
+  resources :answers, except: [:show]
 
 end
 

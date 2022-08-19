@@ -1,0 +1,36 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading">Répondre a la Question </div>
+        <div class="panel-body">
+            <form action="/profil/answers" method="post" id="form-answers" class= 'form_horizental'>
+                <input type="hidden" name="specie_id" value="<%=  @specie.id %>">
+                <div class="form_group">
+                    <%= @specie.slug %>
+                </div>
+              
+
+                <div class="form_group">
+                    
+                    <label for='answer' class='col-md-4 control-label'>Reponse: </label>
+                    <div class="col-md-8">
+                         <div class="form_group">
+                    <input type="radio" id='q1' name='answer' value="<%= @specie.questionone %>"> <%= @specie.questionone %>
+                </div>
+                <div class="form_group">
+                    <input type="radio" id='q2' name='answer'  value="<%= @specie.questiontwo %>"> <%= @specie.questiontwo %>
+                </div>
+                <div class="form_group">
+                    <input type="radio" id='q3' name='answer'  value="<%= @specie.questionthree %>"> <%= @specie.questionthree %>
+                </div>
+                    </div>
+                </div>
+                
+                <div class="form_group">
+                    <div class="col-md-offset-4 col-md-6">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </div>
+            <form>
+        </div>
+    </div>
+</div>

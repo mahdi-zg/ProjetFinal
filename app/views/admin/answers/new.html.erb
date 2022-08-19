@@ -1,0 +1,48 @@
+
+<div   class="panel panel-default">
+
+<div class="panel-heading">Repondre a la Question</div>
+<div class="panel-body">
+
+<%= form_for @answers, id: 'form-answers', html: {class: 'form_horizental'} do |f| %>
+
+    <% if species.errors.any?  %>
+<div class="alert alert-danger">
+<ul>
+    <% species.errors.full_messages.each do |message| %>
+    <li> <%= message %> </li>
+    <% end %>
+</ul>
+</div>
+<% end %>
+
+<div class="form_group">
+<%= f.label :label, "Reponse:", class: 'col-md-4 control-label' %>
+
+
+<div class="col-md-8">
+    <%= f.text_field :label, class: 'form-control ' %>
+</div>
+ </div>
+
+
+ 
+<div class="form_group">
+<div class="col-md-offset-4 col-md-6">
+    <button type="submit" class="btn btn-primary">
+
+    <%= answers.new_record? ? 'Créer' : 'Modifier' %>
+
+    </button>
+ </div>
+ </div>
+
+ <% end %>
+
+
+
+
+
+
+</div>
+</div>

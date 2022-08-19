@@ -1,0 +1,86 @@
+
+<div class="panel panel-default">
+<div class="panel-heading">Les Questions dédier Pour les Utilisateurs</div>
+ <div class="panel-body">
+
+<table id="example" class="table">
+  <h2> les Reponses des Utilisateurs  </h2>
+ <thead>
+            <th>username</th> 
+            <th>Titre</th> 
+            <th>Questions</th> 
+            <th>Reponses</th> 
+            <th>Role</th> 
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @answers.each do |answers| %>
+
+            <tr>
+                <td><%= answers.user.username %></td>
+                <td><%= answers.specie.name %></td>
+                <td><%= answers.specie.slug %></td>
+
+                <td><%= answers.label %></td>
+
+              <td> <button>  <%= answers.user.role %></button>   </td>
+            
+            </tr>
+
+            <% end %>
+        </tbody>
+        </table>
+
+
+        <table id="example" class="table"> 
+        <thead>
+    <th>Les Quesions proposer  </th>
+    <th>Les Jours des remises  </th>
+  </thead>  
+
+  <tbody>
+                        <tr>
+                            <td   style="border: 1px #88889b solid"><%= pie_chart Specie.group(:slug).count(:name) %>
+</td>
+                            <td   style="border: 1px #88889b solid"><%= bar_chart Answer.group_by_day(:created_at).count(:label) %>
+</td>
+                      
+                                   <td style="border: 1px #88889b solid"> 
+                                   
+                                      <table id="example" class="table" > 
+                                  <thead>
+                                  <th>Titre</th>
+                                    <th> Les questions</th>
+                                      <th> Reponses 1/2/3</th> 
+                                  </thead>
+                                  <tbody>
+                                              <% @answers.each do |answers| %>
+
+                                                <tr>
+                                                    <td><%= answers.specie.name %></td>
+                                                     <td><%= answers.specie.slug %></td>
+                                                     <td class="btn btn-primary" ><%= answers.specie.questionone %></td>
+                                                    <td class="btn btn-primary" ><%= answers.specie.questiontwo %></td>
+                                                     <td class="btn btn-primary" ><%= answers.specie.questionthree %></td>
+                                                </tr>
+
+                                                <% end %>
+                                  </tbody>
+                              </table>
+                                   
+                                   
+                                   
+                                   </td>
+                        </tr>
+
+    </tbody>
+        </table>
+</div>
+
+</div>
+
+
+
+
+

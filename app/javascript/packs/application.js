@@ -12,6 +12,8 @@ import "chartkick/chart.js"
 
 require ("chartkick")
 require ("chart.js")
+require ("packs/script.js")
+require ("DataTables/jquery.DataTables")
 
 Rails.start()
 Turbolinks.start()

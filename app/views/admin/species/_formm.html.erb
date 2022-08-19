@@ -1,41 +1,35 @@
-<%= form_for [:admin, @species], id: 'form-species', html: {class: 'form_horizental'} do |f| %>
+<%= form_for species, url: admin_species_index_path, html: {class: 'form_horizental'} do |f| %>
 
-    <% if species.errors.any?  %>
-<div class="alert alert-danger">
-<ul>
-    <% species.errors.full_messages.each do |message| %>
-    <li> <%= message %> </li>
-    <% end %>
-</ul>
-</div>
-<% end %>
+            <% if species.errors.any?  %>
+                <div class="alert alert-danger">
+                    <ul>
+                        <% species.errors.full_messages.each do |message| %>
+                             <li> <%= message %> </li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
 
-<div class="form_group">
-<%= f.label :name, "Title:", class: 'col-md-4 control-label' %>
+    <div class="form_group">
+        <%= f.label :name, "Titre", class: 'col-md-4 control-label' %>
 
-<div class="col-md-8">
-    <%= f.text_field :name, class: 'form-control ' %>
-</div>
-
- </div>
-
-
-<!--<div class="col-md-8">
-<%= f.select :name, ['aaaa', 'bbbb'], html: {class: 'form-control '} %>
- </div>-->
-
-
-
-<div class="form_group">
-    <%= f.label :slug, "Question:", class: 'col-md-4 control-label' %>
-    <div class="col-md-8">
-        <%= f.text_field :slug, class: 'form-control ' %>
+        <div class="col-md-8">
+            <%= f.text_field :name, class: 'form-control ' %>
+        </div>
     </div>
-</div>
 
 
+        <div class="form_group">
+             <%= f.label :slug, "Question", class: 'col-md-4 control-label' %>
 
-<div class="form_group">
+            <div class="col-md-8">
+                <%= f.text_field :slug, class: 'form-control ' %>
+            </div>
+        </div>
+
+
+        
+        <div class="form_group">
              <%= f.label :questionone, "Reponse 1:", class: 'col-md-4 control-label' %>
 
             <div class="col-md-8">
@@ -58,6 +52,7 @@
                 <%= f.text_field :questionthree, class: 'form-control ' %>
             </div>
         </div>
+
 
 
  
